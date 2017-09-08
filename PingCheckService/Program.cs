@@ -28,7 +28,7 @@ namespace PingCheckService
                     switch (mode)
                     {
                         //サービスインストール
-                        case "/i":
+                        case "/regist":
                             if (IsServiceRegistered(service.ServiceName))
                             {
                                 Console.WriteLine("Already Registered.");
@@ -41,7 +41,7 @@ namespace PingCheckService
                             break;
 
                         //サービスアンインストール
-                        case "/u":
+                        case "/unregist":
                             if (IsServiceRegistered(service.ServiceName))
                             {
                                 ManagedInstallerClass.InstallHelper(new string[] { "/u", path });
@@ -51,6 +51,11 @@ namespace PingCheckService
                             {
                                 Console.WriteLine("Not Registered.");
                             }
+                            break;
+
+                        //Usage
+                        default:
+                            Console.WriteLine($"Usage: {path} [/register | /unregist]");
                             break;
                     }
                     return;
